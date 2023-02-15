@@ -6,5 +6,5 @@ export interface Moto {
     year: string;
     pais: string;
     precio: number;
-
+    imagen: string;
 }

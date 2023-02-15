@@ -3,6 +3,8 @@ import { Moto } from '../moto';
 
 import { FirestoreService } from '../firestore.service';
 
+import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -16,20 +18,13 @@ export class HomePage {
     data:{} as Moto
   }];
 
-  constructor(private firestoreService: FirestoreService) {
+  constructor(private firestoreService: FirestoreService, private router: Router) {
     //crear una tarea vacia
     this.motoEditando={} as Moto;
     this.obtenerListaMoto();
   }
 
-  clicBotonInsertar(){
-    this.firestoreService.insertar("motos", this.motoEditando).then(() => {
-      console.log("Moto creada correctamente");
-      this.motoEditando = {} as Moto;
-    }, (error) => {
-      console.error(error);
-    });
-  }
+
 
   obtenerListaMoto(){
     this.firestoreService.consultar("motos").subscribe((resultadoConsultaMotos) => {
@@ -42,6 +37,32 @@ export class HomePage {
       });
     }) 
   }
+
+  idMotoSelec: string;
+
+
+  selecMoto(motoSelec) {
+    console.log("Moto Seleccionada: ");
+    console.log(motoSelec);
+    //Fallo de motoSelec
+    this.idMotoSelec = motoSelec.id;
+    this.motoEditando.marca = motoSelec.data.marca;
+    this.motoEditando.modelo = motoSelec.data.modelo;
+    this.motoEditando.color = motoSelec.data.color;
+    this.motoEditando.year = motoSelec.data.year;
+    this.motoEditando.pais = motoSelec.data.pais;
+    this.motoEditando.precio = motoSelec.data.precio;
+    this.motoEditando.imagen = motoSelec.data.imagen;
+
+    this.router.navigate(['/detalle', this.idMotoSelec]);
+
+  }
+
+  clicBotonInsertar(){
+    this.router.navigate(['/detalle', 'A']);
+  }
+
+  
 
 
 }

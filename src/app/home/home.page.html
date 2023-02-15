@@ -6,42 +6,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-label>Marca</ion-label>
-    <ion-input [(ngModel)]="motoEditando.marca"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Modelo</ion-label>
-    <ion-input [(ngModel)]="motoEditando.modelo"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Color</ion-label>
-    <ion-input [(ngModel)]="motoEditando.color"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Year</ion-label>
-    <ion-input [(ngModel)]="motoEditando.year"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Pais</ion-label>
-    <ion-input [(ngModel)]="motoEditando.pais"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Precio</ion-label>
-    <ion-input [(ngModel)]="motoEditando.precio"></ion-input>
-  </ion-item>
-
-  <ion-button (click)="clicBotonInsertar()">Añadir Moto</ion-button>
+<ion-content [fullscreen]="true" class="color">
 
   <h1>LISTA DE MOTOS</h1>
   <ion-list>
-    <ion-item *ngFor="let documentMoto of arrayColeccionMotos">
+    <ion-item *ngFor="let documentMoto of arrayColeccionMotos" (click)="selecMoto(documentMoto)">
       <ion-grid>
         <ion-row>
           <h2>{{ documentMoto.data.marca }}</h2>
@@ -52,5 +21,8 @@
       </ion-grid>
     </ion-item>
   </ion-list>
+
+  <ion-fab-button (click)="clicBotonInsertar()">+</ion-fab-button>
+
 
 </ion-content>
