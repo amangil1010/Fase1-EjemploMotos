@@ -1,28 +1,45 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Ejmeplo Firestore
+      Motos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="color">
 
-  <h1>LISTA DE MOTOS</h1>
+  <h1 style="margin-left: 50px;" class="colorLetra">LISTA DE MOTOS</h1>
   <ion-list>
     <ion-item *ngFor="let documentMoto of arrayColeccionMotos" (click)="selecMoto(documentMoto)">
-      <ion-grid>
-        <ion-row>
-          <h2>{{ documentMoto.data.marca }}</h2>
+      <ion-grid class="border">
+        <ion-row >
+          <h2 style="margin-left: 600px;" class="colorLetra">{{ documentMoto.data.marca }}</h2>
+          <h2 style="margin-left: 15px;" class="colorLetra">{{ documentMoto.data.modelo }}</h2>
         </ion-row>
-        <ion-row>
-          <h2>{{ documentMoto.data.modelo }}</h2>
-        </ion-row>
-      </ion-grid>
+        <!-- <ion-row>
+          <h2 class="colorLetra">{{ documentMoto.data.modelo }}</h2>
+        </ion-row> -->
+      </ion-grid >
     </ion-item>
   </ion-list>
 
-  <ion-fab-button (click)="clicBotonInsertar()">+</ion-fab-button>
+  <ion-fab-button class="" (click)="clicBotonInsertar()">+</ion-fab-button>
 
+  <ion-fab-button (click)="llamar()" class=""><ion-icon name="call"></ion-icon></ion-fab-button>
 
 </ion-content>
+
+<ion-toolbar>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-icon name="home" id="icons"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="pagina2">
+        <ion-icon name="information-circle" id="icons"></ion-icon>
+        <ion-label>Sobre la App</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-toolbar>

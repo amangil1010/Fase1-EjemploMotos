@@ -5,6 +5,11 @@ import { FirestoreService } from '../firestore.service';
 
 import {Router} from '@angular/router';
 
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -18,7 +23,7 @@ export class HomePage {
     data:{} as Moto
   }];
 
-  constructor(private firestoreService: FirestoreService, private router: Router) {
+  constructor(private socialSharing: SocialSharing,private firestoreService: FirestoreService, private router: Router, private callNumber: CallNumber) {
     //crear una tarea vacia
     this.motoEditando={} as Moto;
     this.obtenerListaMoto();
@@ -62,7 +67,21 @@ export class HomePage {
     this.router.navigate(['/detalle', 'A']);
   }
 
-  
+  // regularSharing() {
+  //   this.socialSharing.share("Mi mensaje que comparto", null, null, null).then(() => {
+  //     console.log("Se ha compartido correctamente");
+  //   }).catch((error) => {
+  //     console.log("Se ha producido un error: " + error);
+  //   });
+  // }
+
+  llamar(){
+
+    this.callNumber.callNumber("656 27 05 55", true)
+    .then(res => console.log('Llamada Finalizada', res))
+    .catch(err => console.log('Error', err));
+
+  }
 
 
 }

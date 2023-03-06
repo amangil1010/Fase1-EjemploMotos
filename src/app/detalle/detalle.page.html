@@ -1,58 +1,66 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detalle</ion-title>
+    <ion-buttons class="ion-button2" slot="start" fill="clear" id="cancelar" (click)="clicBotonCancelar()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title>Detalles</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="color">
-  <ion-item id="borde">
-    <ion-label>Marca</ion-label>
-    <ion-input [(ngModel)]="document.data.marca"></ion-input>
+
+  <ion-item class="borde">
+    <ion-label position="floating" class="colorLetra">Marca: </ion-label>
+    <ion-input class="colorLetra2" [(ngModel)]="document.data.marca"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label>Modelo</ion-label>
-    <ion-input [(ngModel)]="document.data.modelo"></ion-input>
+  <ion-item class="borde">
+    <ion-label position="floating" class="colorLetra">Modelo: </ion-label>
+    <ion-input class="colorLetra2" [(ngModel)]="document.data.modelo"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label>Color</ion-label>
-    <ion-input [(ngModel)]="document.data.color"></ion-input>
+  <ion-item class="borde">
+    <ion-label position="floating" class="colorLetra">Color: </ion-label>
+    <ion-input class="colorLetra2" [(ngModel)]="document.data.color"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label>Year</ion-label>
-    <ion-input [(ngModel)]="document.data.year"></ion-input>
+  <ion-item class="borde">
+    <ion-label position="floating" class="colorLetra">Year: </ion-label>
+    <ion-input class="colorLetra2" [(ngModel)]="document.data.year"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label>Pais</ion-label>
-    <ion-input [(ngModel)]="document.data.pais"></ion-input>
+  <ion-item class="borde" >
+    <ion-label position="floating" class="colorLetra">Pais: </ion-label>
+    <ion-input class="colorLetra2" [(ngModel)]="document.data.pais"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label>Precio</ion-label>
-    <ion-input [(ngModel)]="document.data.precio"></ion-input>
+  <ion-item class="borde">
+    <ion-label position="floating" class="colorLetra">Precio: </ion-label>
+    <ion-input class="colorLetra2" [(ngModel)]="document.data.precio"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label>Imagen</ion-label>
+  <ion-item class="borde2">
+    <ion-label class="colorLetra"></ion-label>
     <!-- <ion-input [(ngModel)]="document.data.imagen"></ion-input> -->
-    <img src="{{document.data.imagen}} ">
+    <img class="img2" src="{{document.data.imagen}} ">
   </ion-item>
 
 
-  <ion-button id="borrar" *ngIf="id !='A'" (click)="presentAlert()">Borrar Moto</ion-button>
+  <ion-button class="ion-button" fill="clear" id="borrar" *ngIf="id !='A'" (click)="presentAlert()">Borrar Moto</ion-button>
 
-  <ion-button id="modificar" *ngIf="id !='A'" (click)="clicBotonModificar()">Modificar Moto</ion-button>
+  <ion-button class="ion-button" fill="clear" id="modificar" *ngIf="id !='A'" (click)="clicBotonModificar()">Modificar Moto</ion-button>
 
-  <ion-button id="guardar" *ngIf="id=='A'" (click)="clicBotonInsertar()">Guardar</ion-button>
+  <ion-button class="ion-button" fill="clear" id="guardar" *ngIf="id=='A'" (click)="clicBotonInsertar()">Guardar</ion-button>
 
-  <ion-button id="subir" (click)="uploadImagePicker()">Subir Fotos</ion-button>
+  <ion-button class="ion-button" fill="clear" id="subir" (click)="uploadImagePicker()">Subir Fotos</ion-button>
+
+  <ion-button class="ion-button" fill="clear" id="subir" (click)="deleteFile(document.data.imagen)">Eliminar Fotos</ion-button>
+
+  <ion-button class="ion-button" fill="clear" id="compartir" (click)="regularSharing()">Compartir</ion-button>
 
   <!-- <ion-button id="bajar" (click)="deleteFile()">Borrar Fotos</ion-button> -->
   
-  <ion-button id="cancelar" (click)="clicBotonCancelar()">Cancelar</ion-button>
+  <!-- <ion-button class="ion-button" fill="clear" id="cancelar" (click)="clicBotonCancelar()">Cancelar</ion-button> -->
 
 </ion-content>
 

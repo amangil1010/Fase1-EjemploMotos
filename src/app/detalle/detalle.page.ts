@@ -11,6 +11,9 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
 import { resourceLimits } from 'worker_threads';
 
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+
+
 
 @Component({
   selector: 'app-detalle',
@@ -33,7 +36,7 @@ export class DetallePage implements OnInit {
   handlerMessage = '';
   roleMessage = '';
 
-  constructor(private firestoreService: FirestoreService, 
+  constructor(private socialSharing: SocialSharing,private firestoreService: FirestoreService, 
     private loadingController: LoadingController,
     private toastController: ToastController,
     private imagePicker: ImagePicker,
@@ -97,19 +100,22 @@ export class DetallePage implements OnInit {
   
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'Alert!',
+      header: 'Cuidado!',
       buttons: [
         {
-          text: 'Cancel',
-          role: 'cancel',
+          text: 'Cancelar',
+          role: 'cancelar',
           handler: () => {
-            this.handlerMessage = 'Alert canceled';
+            this.handlerMessage = 'Cancelar';
           },
         },
         {
           text: 'OK',
-          role: 'confirm',
+          role: 'confirmar',
           handler: () => {
+            ///////////////////
+            this.deleteFile(this.document.data.imagen);
+            ///////////////////
             this.handlerMessage = 'Alert confirmed';
             this.firestoreService.borrar("motos", this.id).then(() => {
               this.document.data = {} as Moto;
@@ -200,6 +206,14 @@ async uploadImagePicker(){
         console.log(err);
     });
   }
+
+    regularSharing() {
+      this.socialSharing.share(`Compartir: ${this.document.data.marca}-${this.document.data.marca} `).then(() => {
+        console.log("Se ha compartido correctamente");
+      }).catch((error) => {
+        console.log("Se ha producido un error: " + error);
+      });
+    }
 
 
 
